@@ -1,6 +1,4 @@
-#include "data-structure/tree/main.hpp"
-
-#include <conio.h>
+// #include <conio.h>
 
 #include <iostream>
 
@@ -13,6 +11,9 @@
 #include "data-structure/linked-list/main.hpp"
 #include "data-structure/queue/main.hpp"
 #include "data-structure/stack/main.hpp"
+#include "data-structure/tree/main.hpp"
+#include "design-pattern/main.hpp"
+#include "oop/main.hpp"
 #include "utils.hpp"
 
 using namespace std;
@@ -32,6 +33,7 @@ void handleDataStructure() {
     cout << "||                      0. Exits                                                                             ||" << endl;
     cout << "===============================================================================================================" << endl;
     choice = getUserChoice(1, 6, 0);
+
     system("cls");
     switch (choice) {
       // case 1:
@@ -56,7 +58,6 @@ void handleDataStructure() {
 }
 
 void handleAlgorithm() {
-    // system('cls');
   int choice;
   do {
     cout << "===============================================================================================================" << endl;
@@ -67,6 +68,7 @@ void handleAlgorithm() {
     cout << "||                      0. Exits                                                                             ||" << endl;
     cout << "===============================================================================================================" << endl;
     choice = getUserChoice(1, 2, 0);
+    system("cls");
     switch (choice) {
       case 1:
         handleSearch();
@@ -89,11 +91,12 @@ int main() {
     cout << "||                      1. Data structure                                                                    ||" << endl;
     cout << "||                      2. Algorithm                                                                         ||" << endl;
     cout << "||                      3. Design pattern                                                                    ||" << endl;
+    cout << "||                      4. Object Oriented Programming (OOP)                                                 ||" << endl;
     cout << "||                      0. Exits                                                                             ||" << endl;
     cout << "===============================================================================================================" << endl;
-    choice = getUserChoice(1, 2, 0);
-
+    choice = getUserChoice(1, 4, 0);
     system("cls");
+
     switch (choice) {
       case 1:
         handleDataStructure();
@@ -101,8 +104,9 @@ int main() {
       case 2:
         handleAlgorithm();
         break;
-      case 0:
-        exit(0);
+      case 3:
+        handleDesignPattern();
+        break;
       default:
         break;
     }

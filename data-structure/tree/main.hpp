@@ -1,29 +1,28 @@
 #include <iostream>
 
-#include "./binarySearchTree.hpp"
-using namespace std;
+#include "binarySearchTree.hpp"
 
 void handleTree() {
   int choice;
   do {
-    cout << "===============================================================================================================" << endl;
-    cout << "||                                                      TREE                                                 ||" << endl;
-    cout << "||                              -------------------------------------------------------                      ||" << endl;
-    cout << "||                      1. Tree                                                                              ||" << endl;
-    cout << "||                      2. Binary search tree                                                                ||" << endl;
-    cout << "||                      3. ALV tree                                                                          ||" << endl;
-    cout << "||                      4. Red-Black tree                                                                    ||" << endl;
-    cout << "||                      0. Exits                                                                             ||" << endl;
-    cout << "===============================================================================================================" << endl;
-
+    std::cout << "===============================================================================================================" << std::endl;
+    std::cout << "||                                                      TREE                                                 ||" << std::endl;
+    std::cout << "||                              -------------------------------------------------------                      ||" << std::endl;
+    std::cout << "||                      1. Tree                                                                              ||" << std::endl;
+    std::cout << "||                      2. Binary search tree                                                                ||" << std::endl;
+    std::cout << "||                      3. ALV tree                                                                          ||" << std::endl;
+    std::cout << "||                      4. Red-Black tree                                                                    ||" << std::endl;
+    std::cout << "||                      0. Exits                                                                             ||" << std::endl;
+    std::cout << "===============================================================================================================" << std::endl;
     choice = getUserChoice(1, 4, 0);
+    system("cls");
 
     switch (choice) {
       // case 1:
       //   handleSearch();
       //   break;
       case 2:
-        handleBinarySearchTree();
+        binarySearchTree::handleBinarySearchTree();
         break;
       default:
         break;

@@ -33,12 +33,20 @@ void traverseLinkedList(NODE*& node) {
   std::cout << std::endl;
 }
 
-int findElement(NODE*& node, int value) {
-  return 0;
+int findElement(NODE*& node, int target) {
+  int index = 0;
+  NODE* tmp = node;
+  while (tmp != NULL) {
+    if (tmp->data == target) {
+      return index;
+    }
+    index++;
+    tmp = tmp->pNext;
+  }
+  return -1;
 }
 
 void insertFirst(NODE*& node, int value) {  // node là phần tử head
-  std::cout << "RRRRRRRRRRRRRRRRR" << node;
   NODE* tmp = new NODE(value);
   if (node == NULL) {
     node = tmp;
@@ -197,7 +205,12 @@ void handleSingleLinkedList() {
         int target;
         std::cout << "Input value you want to find: ";
         std::cin >> target;
-        findElement(head, target);
+        int result = findElement(head, target);
+        if (result >= 0) {
+          std::cout << "Element <" << target << "> is in position [" << result << "] of list\n";
+        } else {
+          std::cout << "Element does not exist!!\n";
+        }
         break;
       }
       case 9:
