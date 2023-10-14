@@ -46,7 +46,7 @@ int findElement(NODE*& node, int target) {
   return -1;
 }
 
-void insertFirst(NODE*& node, int value) {  // node là phần tử head
+void insertFirst(NODE*& node, int value) { 
   NODE* tmp = new NODE(value);
   if (node == NULL) {
     node = tmp;

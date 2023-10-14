@@ -27,12 +27,12 @@ NODE* searchItem(NODE*& node, int target) {
 }
 
 void insertElement(NODE*& root, int value) {
-  if (root == NULL) {
+  if (root == NULL || root->data == 0) {  //////////////// tại vì khởi tạo NULL thì tự nó chuyển qua 0 đéo biết fix
     root = new NODE(value);
     return;
   }
   if (root->data == value) {
-    std::cout << "Element already exist in BST!!";
+    std::cout << "Element " << value << "already exist in BST!!";
   } else {
     if (value < root->data) {
       insertElement(root->pLeft, value);
@@ -42,43 +42,67 @@ void insertElement(NODE*& root, int value) {
   }
 }
 
-// NODE* deleteItem(NODE* &root, int key) {
-//   if (root == nullptr) {
-//     return nullptr;
-//   }
+NODE* deleteItem(NODE*& root, int key) {
+  // if (root == nullptr) {
+  //   return nullptr;
+  // }
 
-//   if (key < root->value) {
-//     root->left = deleteItem(root->left, key);
-//   } else if (key > root->value) {
-//     root->right = deleteItem(root->right, key);
-//   } else {
-//     if (root->left == nullptr) {
-//       NODE* temp = root->right;
-//       delete root;
-//       return temp;
-//     } else if (root->right == nullptr) {
-//       NODE* temp = root->left;
-//       delete root;
-//       return temp;
-//     }
+  // if (key < root->value) {
+  //   root->left = deleteItem(root->left, key);
+  // } else if (key > root->value) {
+  //   root->right = deleteItem(root->right, key);
+  // } else {
+  //   if (root->left == nullptr) {
+  //     NODE* temp = root->right;
+  //     delete root;
+  //     return temp;
+  //   } else if (root->right == nullptr) {
+  //     NODE* temp = root->left;
+  //     delete root;
+  //     return temp;
+  //   }
 
-//     NODE* temp = find(root->right);
-//     root->value = temp->value;
-//     root->right = deleteItem(root->right, temp->value);
-//   }
+  //   NODE* temp = find(root->right);
+  //   root->value = temp->value;
+  //   root->right = deleteItem(root->right, temp->value);
+  // }
 
-//   return root;
-// }
+  // return root;
+}
 
 int getHeight(NODE* root) {
   if (root == nullptr) {
     return 0;
   }
-  return 1 + max(getHeight(root->pLeft), getHeight(root->pRight));
+  return 1 + std::max(getHeight(root->pLeft), getHeight(root->pRight));
+}
+
+void preorderTraversal(NODE*& node) {
+  if (node != NULL) {
+    std::cout << node->data << " ";
+    preorderTraversal(node->pLeft);
+    preorderTraversal(node->pRight);
+  }
+}
+
+void inorderTraversal(NODE*& node) {
+  if (node != NULL) {
+    inorderTraversal(node->pLeft);
+    std::cout << node->data << " ";
+    inorderTraversal(node->pRight);
+  }
+}
+
+void postorderTraversal(NODE*& node) {
+  if (node != NULL) {
+    postorderTraversal(node->pLeft);
+    postorderTraversal(node->pRight);
+    std::cout << node->data << " ";
+  }
 }
 
 void printBinaryTree(NODE*& root) {
-  queue<NODE*> treeLevel, temp;
+  std::queue<NODE*> treeLevel, temp;
   treeLevel.push(root);
   int counter = 0;
   int height = getHeight(root) - 1;
@@ -89,22 +113,22 @@ void printBinaryTree(NODE*& root) {
     if (temp.empty()) {
       double n = numberOfElements / pow(2, counter + 1);
       for (; n > 0; n--) {
-        cout << "\t";
+        std::cout << "\t";
       }
       if (removed == nullptr) {
-        cout << " ";
+        std::cout << " ";
       } else {
-        cout << removed->data;
+        std::cout << removed->data;
       }
     } else {
       double n = numberOfElements / pow(2, counter);
       for (; n > 0; n--) {
-        cout << "\t";
+        std::cout << "\t";
       }
       if (removed == nullptr) {
-        cout << " ";
+        std::cout << " ";
       } else {
-        cout << removed->data;
+        std::cout << removed->data;
       }
     }
     if (removed == nullptr) {
@@ -115,8 +139,7 @@ void printBinaryTree(NODE*& root) {
       temp.push(removed->pRight);
     }
     if (treeLevel.empty()) {
-      cout << endl
-           << endl;
+      std::cout << std::endl << std::endl;
       treeLevel = temp;
       while (!temp.empty()) {
         temp.pop();
@@ -162,6 +185,32 @@ void handleBinarySearchTree() {
   // temp = new NODE(15);
   // bst->pRight->pRight->pRight = temp;
 
+  insertElement(bst, 25);
+  insertElement(bst, 15);
+  insertElement(bst, 51);
+  insertElement(bst, 10);
+  insertElement(bst, 21);
+  insertElement(bst, 35);
+  insertElement(bst, 70);
+  insertElement(bst, 4);
+  insertElement(bst, 12);
+  insertElement(bst, 18);
+  insertElement(bst, 24);
+  insertElement(bst, 31);
+  insertElement(bst, 44);
+  insertElement(bst, 66);
+  insertElement(bst, 90);
+  // insertElement(bst, 81);
+  // insertElement(bst, 13);
+  // insertElement(bst, 23);
+  // insertElement(bst, 37);
+  // insertElement(bst, 78);
+  // insertElement(bst, 22);
+  // insertElement(bst, 68);
+  // insertElement(bst, 99);
+  // insertElement(bst, 88);
+
+
   int choice;
   do {
     std::cout << "===============================================================================================================" << std::endl;
@@ -198,6 +247,21 @@ void handleBinarySearchTree() {
       } break;
       case 4:
         std::cout << "Height of tree: " << getHeight(bst) << std::endl;
+        break;
+      case 5:
+        std::cout << "Pre-order traversal: ";
+        preorderTraversal(bst);
+        std::cout << std::endl;
+        break;
+      case 6:
+        std::cout << "In-order traversal: ";
+        inorderTraversal(bst);
+        std::cout << std::endl;
+        break;
+      case 7:
+        std::cout << "Post-order traversal: ";
+        postorderTraversal(bst);
+        std::cout << std::endl;
         break;
       case 8:
         printBinaryTree(bst);

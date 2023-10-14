@@ -1,6 +1,7 @@
 #include <math.h>
 
 #include <iostream>
+
 #include "../utils.hpp"
 
 using namespace std;
@@ -17,12 +18,14 @@ int linearSearch(int arr[], int n, int target) {
 int binarySearch(int arr[], int left, int right, int target) {
   while (left <= right) {
     int mid = (left + right) / 2;
-    if (arr[mid] == target)
+    if (arr[mid] == target) {
       return mid;
-    if (arr[mid] < target) {
-      left = mid + 1;
     } else {
-      right = mid - 1;
+      if (arr[mid] < target) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
     }
   }
   return -1;
