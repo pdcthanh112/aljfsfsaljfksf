@@ -1,7 +1,5 @@
 #include <iostream>
 
-#include "../../utils.hpp"
-
 namespace singleLinkedList {
 struct NODE {
   int data;
@@ -146,20 +144,20 @@ void handleSingleLinkedList() {
   int choice;
   NODE* head = nullptr;
   do {
-    std::cout << "===============================================================================================================" << std::endl;
-    std::cout << "||                                                 SINGLE LINKED-LIST                                        ||" << std::endl;
-    std::cout << "||                              -------------------------------------------------------                      ||" << std::endl;
-    std::cout << "||                      1. Insert element at head                                                            ||" << std::endl;
-    std::cout << "||                      2. Insert element at tail                                                            ||" << std::endl;
-    std::cout << "||                      3. Insert element at position                                                        ||" << std::endl;
-    std::cout << "||                      4. Delete element at head                                                            ||" << std::endl;
-    std::cout << "||                      5. Delete element at tail                                                            ||" << std::endl;
-    std::cout << "||                      6. Delete element at position                                                        ||" << std::endl;
-    std::cout << "||                      7. Traverse linked list                                                              ||" << std::endl;
-    std::cout << "||                      8. Find element                                                                      ||" << std::endl;
-    std::cout << "||                      9. Reverse linked list                                                               ||" << std::endl;
-    std::cout << "||                      0. Exits                                                                             ||" << std::endl;
-    std::cout << "===============================================================================================================" << std::endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                                 SINGLE LINKED-LIST                                        ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Insert element at head                                                            ||\n";
+    std::cout << "||                      2. Insert element at tail                                                            ||\n";
+    std::cout << "||                      3. Insert element at position                                                        ||\n";
+    std::cout << "||                      4. Delete element at head                                                            ||\n";
+    std::cout << "||                      5. Delete element at tail                                                            ||\n";
+    std::cout << "||                      6. Delete element at position                                                        ||\n";
+    std::cout << "||                      7. Traverse linked list                                                              ||\n";
+    std::cout << "||                      8. Find element                                                                      ||\n";
+    std::cout << "||                      9. Reverse linked list                                                               ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
     choice = getUserChoice(1, 9, 0);
 
     switch (choice) {
