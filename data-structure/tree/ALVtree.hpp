@@ -1,11 +1,9 @@
 #include <iostream>
-using namespace std;
 
-typedef struct node NODE;
-struct node {
+struct NODE {
   int value;
   int balance;
   NODE* left;
   NODE* right;
-  NODE(int x) : value(x), left(nullptr), right(nullptr) {}
+  NODE(int value) : value(value), left(nullptr), right(nullptr) {}
 };

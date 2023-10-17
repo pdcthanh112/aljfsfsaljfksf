@@ -6,30 +6,28 @@
 #include "algorithms/sort.hpp"
 #include "algorithms/stringSearching.hpp"
 #include "data-structure/graph.hpp"
-#include "data-structure/linked-list/main.hpp"
 #include "data-structure/queue/main.hpp"
 #include "data-structure/stack/main.hpp"
+#include "data-structure/linked-list/main.hpp"
 #include "data-structure/tree/main.hpp"
 #include "design-pattern/main.hpp"
 #include "oop/main.hpp"
 #include "utils.hpp"
 
-using namespace std;
-
 void handleDataStructure() {
   int choice;
   do {
-    cout << "===============================================================================================================" << endl;
-    cout << "||                                                   DATA STRUCTURES                                         ||" << endl;
-    cout << "||                              -------------------------------------------------------                      ||" << endl;
-    cout << "||                      1. Array                                                                             ||" << endl;
-    cout << "||                      2. Linked List                                                                       ||" << endl;
-    cout << "||                      3. Stack                                                                             ||" << endl;
-    cout << "||                      4. Queue                                                                             ||" << endl;
-    cout << "||                      5. Tree                                                                              ||" << endl;
-    cout << "||                      6. Graph                                                                             ||" << endl;
-    cout << "||                      0. Exits                                                                             ||" << endl;
-    cout << "===============================================================================================================" << endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                                   DATA STRUCTURES                                         ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Array                                                                             ||\n";
+    std::cout << "||                      2. Linked List                                                                       ||\n";
+    std::cout << "||                      3. Stack                                                                             ||\n";
+    std::cout << "||                      4. Queue                                                                             ||\n";
+    std::cout << "||                      5. Tree                                                                              ||\n";
+    std::cout << "||                      6. Graph                                                                             ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
     choice = getUserChoice(1, 6, 0);
 
     system("cls");
@@ -58,13 +56,13 @@ void handleDataStructure() {
 void handleAlgorithm() {
   int choice;
   do {
-    cout << "===============================================================================================================" << endl;
-    cout << "||                                                    ALGORITHM                                              ||" << endl;
-    cout << "||                              -------------------------------------------------------                      ||" << endl;
-    cout << "||                      1. Search                                                                            ||" << endl;
-    cout << "||                      2. Sort                                                                              ||" << endl;
-    cout << "||                      0. Exits                                                                             ||" << endl;
-    cout << "===============================================================================================================" << endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                                    ALGORITHM                                              ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Search                                                                            ||\n";
+    std::cout << "||                      2. Sort                                                                              ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
     choice = getUserChoice(1, 2, 0);
     system("cls");
     switch (choice) {
@@ -83,15 +81,15 @@ void handleAlgorithm() {
 int main() {
   int choice;
   do {
-    cout << "===============================================================================================================" << endl;
-    cout << "||                                          -- DATA STRUCTURES & AGLORITHMS --                               ||" << endl;
-    cout << "||                              -------------------------------------------------------                      ||" << endl;
-    cout << "||                      1. Data structure                                                                    ||" << endl;
-    cout << "||                      2. Algorithm                                                                         ||" << endl;
-    cout << "||                      3. Design pattern                                                                    ||" << endl;
-    cout << "||                      4. Object Oriented Programming (OOP)                                                 ||" << endl;
-    cout << "||                      0. Exits                                                                             ||" << endl;
-    cout << "===============================================================================================================" << endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                          -- DATA STRUCTURES & AGLORITHMS --                               ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Data structure                                                                    ||\n";
+    std::cout << "||                      2. Algorithm                                                                         ||\n";
+    std::cout << "||                      3. Design pattern                                                                    ||\n";
+    std::cout << "||                      4. Object Oriented Programming (OOP)                                                 ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
     choice = getUserChoice(1, 4, 0);
     system("cls");
 

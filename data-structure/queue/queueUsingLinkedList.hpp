@@ -54,16 +54,16 @@ void handleQueueUsingLinkedList() {
   int choice;
   Queue* queue = new Queue();
   do {
-    std::cout << "===============================================================================================================" << std::endl;
-    std::cout << "||                                              QUEUE USING LINKED-LIST                                      ||" << std::endl;
-    std::cout << "||                              -------------------------------------------------------                      ||" << std::endl;
-    std::cout << "||                      1. Enqueue                                                                           ||" << std::endl;
-    std::cout << "||                      2. Dequeue                                                                           ||" << std::endl;
-    std::cout << "||                      3. Front                                                                             ||" << std::endl;
-    std::cout << "||                      4. Rear                                                                              ||" << std::endl;
-    std::cout << "||                      5. Traverse queue                                                                    ||" << std::endl;
-    std::cout << "||                      0. Exits                                                                             ||" << std::endl;
-    std::cout << "===============================================================================================================" << std::endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                              QUEUE USING LINKED-LIST                                      ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Enqueue                                                                           ||\n";
+    std::cout << "||                      2. Dequeue                                                                           ||\n";
+    std::cout << "||                      3. Front                                                                             ||\n";
+    std::cout << "||                      4. Rear                                                                              ||\n";
+    std::cout << "||                      5. Traverse queue                                                                    ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
     choice = getUserChoice(1, 5, 0);
 
     switch (choice) {
@@ -84,7 +84,7 @@ void handleQueueUsingLinkedList() {
         std::cout << "Element at front: " << tmp->data << std::endl;
         break;
       }
-      case 4:{
+      case 4: {
         NODE* tmp = rear(queue);
         std::cout << "Element at rear: " << tmp->data << std::endl;
         break;

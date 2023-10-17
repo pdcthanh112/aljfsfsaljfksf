@@ -11,23 +11,44 @@ struct NODE {
   NODE(int value) : data(value), pLeft(nullptr), pRight(nullptr) {}
 };
 
-NODE* searchItem(NODE*& node, int target) {
-  if (node == NULL) {
+// dùng đệ quy
+NODE* searchItem(NODE*& root, int target) {
+  if (root == NULL) {
     return NULL;
   }
-  if (node->data == target) {
-    return node;
+  if (root->data == target) {
+    return root;
   } else {
-    if (target < node->data) {
-      return searchItem(node->pLeft, target);
+    if (target < root->data) {
+      return searchItem(root->pLeft, target);
     } else {
-      return searchItem(node->pRight, target);
+      return searchItem(root->pRight, target);
     }
   }
 }
 
+// // không dùng đệ quy
+// NODE* searchItem(NODE*& root, int target) {
+//   if (root == NULL) {
+//     return NULL;
+//   }
+//   NODE* tmp = root;
+//   while (tmp != NULL) {
+//     if (tmp->data == target) {
+//       return tmp;
+//     } else {
+//       if (target < tmp->data) {
+//         tmp = tmp->pLeft;
+//       } else {
+//         tmp = tmp->pRight;
+//       }
+//     }
+//   }
+//   return NULL;
+// }
+
 void insertElement(NODE*& root, int value) {
-  if (root == NULL || root->data == 0) {  //////////////// tại vì khởi tạo NULL thì tự nó chuyển qua 0 đéo biết fix
+  if (root == NULL || root->data == 0) {
     root = new NODE(value);
     return;
   }
@@ -42,32 +63,50 @@ void insertElement(NODE*& root, int value) {
   }
 }
 
-NODE* deleteItem(NODE*& root, int key) {
-  // if (root == nullptr) {
-  //   return nullptr;
-  // }
+NODE* deleteElement(NODE* root, int value) {
+  if (root == NULL) {
+    std::cout << "Tree empty!!";
+    return root;
+  }
 
-  // if (key < root->value) {
-  //   root->left = deleteItem(root->left, key);
-  // } else if (key > root->value) {
-  //   root->right = deleteItem(root->right, key);
-  // } else {
-  //   if (root->left == nullptr) {
-  //     NODE* temp = root->right;
-  //     delete root;
-  //     return temp;
-  //   } else if (root->right == nullptr) {
-  //     NODE* temp = root->left;
-  //     delete root;
-  //     return temp;
-  //   }
+  if (root->data > value) {
+    root->pLeft = deleteElement(root->pLeft, value);
+    return root;
+  } else if (root->data < value) {
+    root->pRight = deleteElement(root->pRight, value);
+    return root;
+  }
 
-  //   NODE* temp = find(root->right);
-  //   root->value = temp->value;
-  //   root->right = deleteItem(root->right, temp->value);
-  // }
+  if (root->pLeft == NULL) {
+    NODE* temp = root->pRight;
+    delete root;
+    return temp;
+  } else if (root->pRight == NULL) {
+    NODE* temp = root->pLeft;
+    delete root;
+    return temp;
+  }
 
-  // return root;
+  else {
+    NODE* succParent = root;
+
+    NODE* succ = root->pRight;
+    while (succ->pLeft != NULL) {
+      succParent = succ;
+      succ = succ->pLeft;
+    }
+
+    if (succParent != root) {
+      succParent->pLeft = succ->pRight;
+    } else {
+      succParent->pRight = succ->pRight;
+    }
+
+    root->data = succ->data;
+
+    delete succ;
+    return root;
+  }
 }
 
 int getHeight(NODE* root) {
@@ -77,28 +116,40 @@ int getHeight(NODE* root) {
   return 1 + std::max(getHeight(root->pLeft), getHeight(root->pRight));
 }
 
-void preorderTraversal(NODE*& node) {
-  if (node != NULL) {
-    std::cout << node->data << " ";
-    preorderTraversal(node->pLeft);
-    preorderTraversal(node->pRight);
+void preorderTraversal(NODE*& root) {
+  if (root != NULL) {
+    std::cout << root->data << " ";
+    preorderTraversal(root->pLeft);
+    preorderTraversal(root->pRight);
   }
 }
 
-void inorderTraversal(NODE*& node) {
-  if (node != NULL) {
-    inorderTraversal(node->pLeft);
-    std::cout << node->data << " ";
-    inorderTraversal(node->pRight);
+void inorderTraversal(NODE*& root) {
+  if (root != NULL) {
+    inorderTraversal(root->pLeft);
+    std::cout << root->data << " ";
+    inorderTraversal(root->pRight);
   }
 }
 
-void postorderTraversal(NODE*& node) {
-  if (node != NULL) {
-    postorderTraversal(node->pLeft);
-    postorderTraversal(node->pRight);
-    std::cout << node->data << " ";
+void postorderTraversal(NODE*& root) {
+  if (root != NULL) {
+    postorderTraversal(root->pLeft);
+    postorderTraversal(root->pRight);
+    std::cout << root->data << " ";
   }
+}
+
+bool checkBST(NODE* node, int min, int max) {
+  if (node == nullptr) {
+    return true;
+  }
+
+  if (node->data < min || node->data > max) {
+    return false;
+  }
+
+  return checkBST(node->pLeft, min, node->data - 1) && checkBST(node->pRight, node->data + 1, max);
 }
 
 void printBinaryTree(NODE*& root) {
@@ -139,7 +190,8 @@ void printBinaryTree(NODE*& root) {
       temp.push(removed->pRight);
     }
     if (treeLevel.empty()) {
-      std::cout << std::endl << std::endl;
+      std::cout << std::endl
+                << std::endl;
       treeLevel = temp;
       while (!temp.empty()) {
         temp.pop();
@@ -151,40 +203,6 @@ void printBinaryTree(NODE*& root) {
 
 void handleBinarySearchTree() {
   NODE* bst = new NODE(NULL);
-
-  // NODE* bst = new NODE(1);
-  // NODE* temp = nullptr;
-  // temp = new NODE(2);
-  // bst->pLeft = temp;
-  // temp = new NODE(3);
-  // bst->pRight = temp;
-
-  // temp = new NODE(4);
-  // bst->pLeft->pLeft = temp;
-  // temp = new NODE(5);
-  // bst->pLeft->pRight = temp;
-  // temp = new NODE(6);
-  // bst->pRight->pLeft = temp;
-  // temp = new NODE(7);
-  // bst->pRight->pRight = temp;
-
-  // temp = new NODE(8);
-  // bst->pLeft->pLeft->pLeft = temp;
-  // temp = new NODE(9);
-  // bst->pLeft->pLeft->pRight = temp;
-  // temp = new NODE(10);
-  // bst->pLeft->pRight->pLeft = temp;
-  // temp = new NODE(11);
-  // bst->pLeft->pRight->pRight = temp;
-  // temp = new NODE(12);
-  // bst->pRight->pLeft->pLeft = temp;
-  // temp = new NODE(13);
-  // bst->pRight->pLeft->pRight = temp;
-  // temp = new NODE(14);
-  // bst->pRight->pRight->pLeft = temp;
-  // temp = new NODE(15);
-  // bst->pRight->pRight->pRight = temp;
-
   insertElement(bst, 25);
   insertElement(bst, 15);
   insertElement(bst, 51);
@@ -210,24 +228,24 @@ void handleBinarySearchTree() {
   // insertElement(bst, 99);
   // insertElement(bst, 88);
 
-
   int choice;
   do {
-    std::cout << "===============================================================================================================" << std::endl;
-    std::cout << "||                                               BINARY SEARCH TREE                                          ||" << std::endl;
-    std::cout << "||                              -------------------------------------------------------                      ||" << std::endl;
-    std::cout << "||                      1. Insert element                                                                    ||" << std::endl;
-    std::cout << "||                      2. Delete element                                                                    ||" << std::endl;
-    std::cout << "||                      3. Search element                                                                    ||" << std::endl;
-    std::cout << "||                      4. Get height                                                                        ||" << std::endl;
-    std::cout << "||                      5. Preorder (NLR) Traversal                                                          ||" << std::endl;
-    std::cout << "||                      6. Inorder (LNR) Traversal                                                           ||" << std::endl;
-    std::cout << "||                      7. Postorder (LRN) Traversal                                                         ||" << std::endl;
-    std::cout << "||                      8. Print tree                                                                        ||" << std::endl;
-    std::cout << "||                      0. Exits                                                                             ||" << std::endl;
-    std::cout << "===============================================================================================================" << std::endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                               BINARY SEARCH TREE                                          ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Insert element                                                                    ||\n";
+    std::cout << "||                      2. Delete element                                                                    ||\n";
+    std::cout << "||                      3. Search element                                                                    ||\n";
+    std::cout << "||                      4. Get height                                                                        ||\n";
+    std::cout << "||                      5. Preorder (NLR) Traversal                                                          ||\n";
+    std::cout << "||                      6. Inorder (LNR) Traversal                                                           ||\n";
+    std::cout << "||                      7. Postorder (LRN) Traversal                                                         ||\n";
+    std::cout << "||                      8. Check BST                                                                         ||\n";
+    std::cout << "||                      9. Print tree                                                                        ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
 
-    choice = getUserChoice(1, 8, 0);
+    choice = getUserChoice(1, 9, 0);
 
     switch (choice) {
       case 1: {
@@ -238,13 +256,19 @@ void handleBinarySearchTree() {
         break;
       }
       case 2: {
+        int element;
+        std::cout << "Input element you want to delete: ";
+        std::cin >> element;
+        deleteElement(bst, element);
+        break;
       }
       case 3: {
         int target;
         std::cout << "Input number you want to find: ";
         std::cin >> target;
         NODE* result = searchItem(bst, target);
-      } break;
+        return;
+      }
       case 4:
         std::cout << "Height of tree: " << getHeight(bst) << std::endl;
         break;
@@ -263,7 +287,16 @@ void handleBinarySearchTree() {
         postorderTraversal(bst);
         std::cout << std::endl;
         break;
-      case 8:
+      case 8: {
+        bool result = checkBST(bst, INT_MIN, INT_MAX);
+        if (result) {
+          std::cout << "TRUE";
+        } else {
+          std::cout << "FALSE";
+        }
+        break;
+      }
+      case 9:
         printBinaryTree(bst);
         break;
       default:
