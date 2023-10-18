@@ -69,10 +69,10 @@ NODE* deleteElement(NODE* root, int value) {
     return root;
   }
 
-  if (root->data > value) {
+  if (value < root->data) {
     root->pLeft = deleteElement(root->pLeft, value);
     return root;
-  } else if (root->data < value) {
+  } else if (value > root->data) {
     root->pRight = deleteElement(root->pRight, value);
     return root;
   }
@@ -85,9 +85,7 @@ NODE* deleteElement(NODE* root, int value) {
     NODE* temp = root->pLeft;
     delete root;
     return temp;
-  }
-
-  else {
+  }else {
     NODE* succParent = root;
 
     NODE* succ = root->pRight;

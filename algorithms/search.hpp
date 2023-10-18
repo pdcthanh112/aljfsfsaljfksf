@@ -4,8 +4,6 @@
 
 #include "../utils.hpp"
 
-using namespace std;
-
 int linearSearch(int arr[], int n, int target) {
   for (int i = 0; i < n; i++) {
     if (arr[i] == target) {
@@ -95,36 +93,36 @@ int recursiveSearch(int arr[], int left, int right, int target) {
 void handleSearch() {
   bool confirm;
   do {
-    cout << "===============================================================================================================" << endl;
-    cout << "||                                                   SEARCH                                                  ||" << endl;
-    cout << "||                             -------------------------------------------------------                       ||" << endl;
-    cout << "===============================================================================================================" << endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                                   SEARCH                                                  ||\n";
+    std::cout << "||                             -------------------------------------------------------                       ||\n";
+    std::cout << "===============================================================================================================\n";
 
-    cout << "_____Select search algorithms_______" << endl;
-    cout << "1. Linear search" << endl;
-    cout << "2. Binary search" << endl;
-    cout << "3. Ternary search" << endl;
-    cout << "4. Jump search" << endl;
-    cout << "5. Recursive search" << endl;
+    std::cout << "_____Select search algorithms_______\n";
+    std::cout << "1. Linear search\n";
+    std::cout << "2. Binary search\n";
+    std::cout << "3. Ternary search\n";
+    std::cout << "4. Jump search\n";
+    std::cout << "5. Recursive search\n";
     int choice;
-    cout << "Input your choice: ";
-    cin >> choice;
+    std::cout << "Input your choice: ";
+    std::cin >> choice;
 
-    cout << "========= ARRAY DECLARATION ==========" << endl;
+    std::cout << "========= ARRAY DECLARATION ==========\n";
     int length;
-    cout << "Input number of element: ";
-    cin >> length;
+    std::cout << "Input number of element: ";
+    std::cin >> length;
 
     int arr[length];
     for (int i = 0; i < length; i++) {
-      cout << "Element at position [" << i << "]: ";
-      cin >> arr[i];
+      std::cout << "Element at position [" << i << "]: ";
+      std::cin >> arr[i];
     }
     showArray(arr, length);
 
     int target;
-    cout << "\nInput number you want to find: ";
-    cin >> target;
+    std::cout << "\nInput number you want to find: ";
+    std::cin >> target;
 
     int index;
     switch (choice) {
@@ -148,9 +146,9 @@ void handleSearch() {
     }
 
     if (index == -1) {
-      cout << "===> Not exits" << endl;
+      std::cout << "===> Not exits\n";
     } else {
-      cout << "===> Result at position: " << index << endl;
+      std::cout << "===> Result at position: " << index << std::endl;
     }
 
     confirm = getUserConfirmation();
