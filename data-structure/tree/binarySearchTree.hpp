@@ -138,16 +138,16 @@ void postorderTraversal(NODE*& root) {
   }
 }
 
-bool checkBST(NODE* node, int min, int max) {
-  if (node == nullptr) {
+bool checkBST(NODE* root, int min, int max) {
+  if (root == nullptr) {
     return true;
   }
 
-  if (node->data < min || node->data > max) {
+  if (root->data < min || root->data > max) {
     return false;
   }
 
-  return checkBST(node->pLeft, min, node->data - 1) && checkBST(node->pRight, node->data + 1, max);
+  return checkBST(root->pLeft, min, root->data - 1) && checkBST(root->pRight, root->data + 1, max);
 }
 
 void printBinaryTree(NODE*& root) {
