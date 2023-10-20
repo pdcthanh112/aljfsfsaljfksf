@@ -4,8 +4,8 @@
 #include "stackUsingLinkedList.hpp"
 
 void handleStack() {
+  
   int choice;
-
   do {
     std::cout << "===============================================================================================================" << std::endl;
     std::cout << "||                                                      STACK                                                ||" << std::endl;
