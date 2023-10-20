@@ -5,7 +5,7 @@
 #include "algorithms/shortestPath.hpp"
 #include "algorithms/sort.hpp"
 #include "algorithms/stringSearching.hpp"
-#include "data-structure/graph.hpp"
+#include "data-structure/graph/main.hpp"
 #include "data-structure/linked-list/main.hpp"
 #include "data-structure/queue/main.hpp"
 #include "data-structure/stack/main.hpp"
@@ -46,6 +46,9 @@ void handleDataStructure() {
         break;
       case 5:
         handleTree();
+        break;
+      case 6:
+        handleGraph();
         break;
       default:
         break;
