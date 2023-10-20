@@ -1,19 +1,20 @@
 #include <iostream>
 
 #include "queueUsingLinkedList.hpp"
+
 void handleQueue() {
   int choice;
   do {
-    std::cout << "===============================================================================================================" << std::endl;
-    std::cout << "||                                                      QUEUE                                                ||" << std::endl;
-    std::cout << "||                              -------------------------------------------------------                      ||" << std::endl;
-    std::cout << "||                      1. Queue (using array)                                                               ||" << std::endl;
-    std::cout << "||                      2. Queue (using linked list)                                                         ||" << std::endl;
-    std::cout << "||                      3. Priority Queue                                                                    ||" << std::endl;
-    std::cout << "||                      4. Double Ended Queue                                                                ||" << std::endl;
-    std::cout << "||                      5. Circular Queue                                                                    ||" << std::endl;
-    std::cout << "||                      0. Exits                                                                             ||" << std::endl;
-    std::cout << "===============================================================================================================" << std::endl;
+    std::cout << "===============================================================================================================\n";
+    std::cout << "||                                                      QUEUE                                                ||\n";
+    std::cout << "||                              -------------------------------------------------------                      ||\n";
+    std::cout << "||                      1. Queue (using array)                                                               ||\n";
+    std::cout << "||                      2. Queue (using linked list)                                                         ||\n";
+    std::cout << "||                      3. Priority Queue                                                                    ||\n";
+    std::cout << "||                      4. Double Ended Queue                                                                ||\n";
+    std::cout << "||                      5. Circular Queue                                                                    ||\n";
+    std::cout << "||                      0. Exits                                                                             ||\n";
+    std::cout << "===============================================================================================================\n";
     choice = getUserChoice(1, 5, 0);
     system("cls");
     switch (choice) {

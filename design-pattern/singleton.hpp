@@ -1,48 +1,58 @@
+// Allow only 1 instance:
 #include <iostream>
+#include <string>
 
 class Singleton {
- private:
-  static Singleton* instance;
-
-  Singleton() {}
-  ~Singleton() {}
-
  public:
-  static Singleton* getInstance() {
-    if (!instance) {
-      instance = new Singleton();
-    }
-    return instance;
+  std::string name;
+  static Singleton *GetInstance() {
+    static Singleton *singleton = new Singleton();
+    return singleton;
   }
 
-  void showMessage() {
-    std::cout << "Hello from Singleton!" << std::endl;
-  }
+ private:
+  Singleton() = default;
 };
-
-Singleton* Singleton::instance = nullptr;
 
 int main() {
-  Singleton* singleton = Singleton::getInstance();
-
-  singleton->showMessage();
-
-  return 0;
+  Singleton *s1 = Singleton::GetInstance();
+  Singleton *s2 = Singleton::GetInstance();
+  s1->name = "aaa";
+  s2->name = "bbb";
+  std::cout << s1->name << std::endl;
 }
 
-// ví dụ, khởi tạo duy nhất 1 logger để ghi log
-class Logger {
- private:
-  static Logger* instance;
-  Logger() {}
+// Limit the number of instances
+#include <iostream>
+#include <string>
 
+#define LIMIT_MAX_INSTANCE 5
+
+class Singleton {
  public:
-  static Logger* getInstance() {
-    if (!instance) {
-      instance = new Logger();
-    }
-    return instance;
+  std::string name;
+  static int instance_count;
+  static Singleton *GetInstance() {
+    if (instance_count >= LIMIT_MAX_INSTANCE)
+      return NULL;
+    Singleton *singleton = new Singleton();
+    instance_count++;
+    return singleton;
   }
+
+ private:
+  Singleton() = default;
 };
 
-Logger* Logger::instance = nullptr;
+int Singleton::instance_count = 0;
+
+int main() {
+  Singleton *s1 = Singleton::GetInstance();
+  Singleton *s2 = Singleton::GetInstance();
+  Singleton *s3 = Singleton::GetInstance();
+  if (s3 == NULL)
+    std::cout << "s3 is NULL" << std::endl;
+  s1->name = "aaa";
+  s2->name = "bbb";
+  std::cout << s1->name << std::endl;
+}
